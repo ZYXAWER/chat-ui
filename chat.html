@@ -1,4 +1,4 @@
-echo '<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,10 +12,9 @@ echo '<!DOCTYPE html>
             display: flex;
             flex-direction: column;
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            z-index: 1000;
+            bottom: 10px;
+            right: 10px;
+            background-color: #fff;
         }
         #messages {
             flex: 1;
@@ -29,16 +28,9 @@ echo '<!DOCTYPE html>
         #input-container input {
             flex: 1;
             padding: 10px;
-            border: none;
-            border-top: 1px solid #ccc;
         }
         #input-container button {
             padding: 10px;
-            border: none;
-            border-left: 1px solid #ccc;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -46,10 +38,11 @@ echo '<!DOCTYPE html>
     <div id="chat-container">
         <div id="messages"></div>
         <div id="input-container">
-            <input type="text" id="message-input" placeholder="Escribe un mensaje...">
-            <button onclick="sendMessage()">Enviar</button>
+            <input type="text" id="message-input" placeholder="Type a message">
+            <button onclick="sendMessage()">Send</button>
         </div>
     </div>
+
     <script>
         async function sendMessage() {
             const messageInput = document.getElementById('message-input');
@@ -57,7 +50,7 @@ echo '<!DOCTYPE html>
             const message = messageInput.value;
 
             const userMessage = document.createElement('div');
-            userMessage.textContent = `Tú: ${message}`;
+            userMessage.textContent = `You: ${message}`;
             messagesContainer.appendChild(userMessage);
 
             const response = await fetch('http://localhost:3000/chat', {
@@ -75,8 +68,7 @@ echo '<!DOCTYPE html>
             messagesContainer.appendChild(botMessage);
 
             messageInput.value = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
     </script>
 </body>
-</html>' > chat.html
+</html>
